@@ -36,6 +36,4 @@ class BubbleSort {
 }
 
 $bs = new BubbleSort();
-//var_dump($bs->sort([ 5, 88, 1, 33, 12 ]));
-
 print_r($bs->sort([ 5, 88, 1,9,762,2739,91237,8364,986,98,12,33, 33, 12 ]));
