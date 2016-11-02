@@ -9,17 +9,23 @@
 class BubbleSort {
     // 排序
     public function sort( $arr ) {
+        // 记录程序起始微妙时间
         $start = microtime();
 
+        // 运行几趟 (n-1)
         for ( $i = 0; $i < count($arr) - 1; $i++ ) {
+            // 交换的次数 每一次交换,都会把最大的值放到数组尾部,所有每一趟交换的次数都会减一次
             for ( $j = 0; $j < count($arr) - $i - 1; $j++ ) {
-                if ( $arr[ $j ] > $arr[ $j + 1 ] ) $this->change($arr[ $j ], $arr[ $j + 1 ]);
+                if ( $arr[ $j ] > $arr[ $j + 1 ] )
+                    $this->change($arr[ $j ], $arr[ $j + 1 ]);
             }
         }
 
+        // 记录程序结束微妙时间
         $end = microtime();
 
-        $cost = ($end - $start) * 1000; // 毫秒 ms
+        // 程序运行的毫秒 (微妙 * 1000)
+        $cost = ($end - $start) * 1000;
 
         echo "用时花费: $cost ms".PHP_EOL;
 
