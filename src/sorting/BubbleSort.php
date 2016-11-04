@@ -14,17 +14,25 @@ if ( empty( $argv ) ) { // 如果数组还为空,赋予默认数组
     $argv = [ 5, 88, 1, 9, 762, 2739, 91237, 8364, 986, 98, 12, 33, 33, 12 ];
 }
 
-
-function bubbleSort( $arr ) {
+/**
+ * 冒泡排序
+ *
+ * @param array $inArr
+ *
+ * @return array
+ */
+function bubbleSort( array $inArr ) {
     // 记录程序起始微妙时间
     $start = microtime();
 
-    // 运行几趟 (n-1)
-    for ( $i = 0; $i < count($arr) - 1; $i++ ) {
+    $count = count($inArr); // 数组个数
+
+    // 循环运行 n-1 趟
+    for ( $i = 1; $i < $count; $i++ ) {
         // 交换的次数 每一次交换,都会把最大的值放到数组尾部,所有每一趟交换的次数都会减一次
-        for ( $j = 0; $j < count($arr) - $i - 1; $j++ ) {
-            if ( $arr[ $j ] > $arr[ $j + 1 ] )
-                swap($arr[ $j ], $arr[ $j + 1 ]);
+        for ( $j = 0; $j < $count - $i; $j++ ) {
+            if ( $inArr[ $j ] > $inArr[ $j + 1 ] )
+                swap($inArr[ $j ], $inArr[ $j + 1 ]);
         }
     }
 
@@ -35,13 +43,13 @@ function bubbleSort( $arr ) {
     $cost = ( $end - $start ) * 1000;
 
 
-    $costStr = "------------冒泡排序----------" . PHP_EOL . "用时: $cost ms" . PHP_EOL;
-    $sortStr = '排序后:' . implode(',', $arr) . PHP_EOL . '------------------------------' . PHP_EOL;
+    $costStr = "------------冒泡排序 时间复杂度: O(N^2)----------" . PHP_EOL . "用时: $cost ms" . PHP_EOL;
+    $sortStr = '排序后:' . implode(',', $inArr) . PHP_EOL . '-------------------------------------------------' . PHP_EOL;
 
     return [
         'cost'    => $cost,
         'costStr' => $costStr,
-        'sortArr' => $arr,
+        'sortArr' => $inArr,
         'sortStr' => $sortStr,
         'content' => $costStr . $sortStr,
     ];
