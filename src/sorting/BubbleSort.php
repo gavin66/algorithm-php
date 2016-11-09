@@ -6,8 +6,6 @@
  * Date: 2016/11/1
  * Time: 21:49
  */
-include '../tools.php';
-
 
 /**
  * 冒泡排序

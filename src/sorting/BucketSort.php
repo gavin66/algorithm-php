@@ -5,8 +5,6 @@
  * Date: 2016/11/4
  * Time: 13:45
  */
-include '../tools.php';
-
 
 /**
  * 桶排序

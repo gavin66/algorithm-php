@@ -54,10 +54,3 @@ function getSortConclusion($sortType,$sort,$sortedSet,$cost){
         'outputHumanStr' => $outputHumanStr, // 利于阅读的字符串
     ];
 }
-
-
-// 获取命令行输入的参数
-//array_shift($argv); // 移除第一个参数 因为是文件名
-//if ( empty( $argv ) ) { // 如果数组还为空,赋予默认数组
-//    $argv = [ 5, 88, 1, 9, 762, 2739, 9137, 8364, 986, 98, 12, 33, 33, 12 ];
-//}
