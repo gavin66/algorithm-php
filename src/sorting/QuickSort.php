@@ -7,18 +7,22 @@
      */
 
     /**
-     * @param array $inArr
-     * @param int   $start
-     * @param int   $end
-     * @param int   $run
+     * 快速排序
+     *
+     * @param array $inArr 排序的数组
+     * @param int   $start 数组开始索引值
+     * @param int   $end   数组最后索引值
+     * @param int   $run   运行次数,初始为1
      */
     function quickSort( array &$inArr, $start = 1, $end = 0, $run = 1 ) {
         if ( $run == 1 ) {
-            array_unshift($inArr, '');
-
             // 一共几个数
             $end = count($inArr);
+
+            // 占据index=0的位置 使数组从index=1开始计算
+            array_unshift($inArr, '');
         }
+
 
         if ( $start > $end ) return;
 
@@ -31,30 +35,45 @@
 
         while ( $iLeft != $jRight ) {
             // 从右侧往左侧走 寻找右侧比基准数小的数组索引
-            while ( $temp < $jRight && $iLeft < $jRight )
+            while ( $temp <= $inArr[ $jRight ] && $iLeft < $jRight )
                 $jRight--;
-            // 从左侧往右侧走 寻找
-            while ( $temp > $iLeft && $iLeft < $jRight )
+            // 从左侧往右侧走 寻找左侧比基准数大的数组索引
+            while ( $temp >= $inArr[ $iLeft ] && $iLeft < $jRight )
                 $iLeft++;
 
             // 交换左侧与右侧
             if ( $iLeft < $jRight ) {
-                $t = $inArr[ $iLeft ];
-                $inArr[ $iLeft ] = $inArr[ $jRight ];
-                $inArr[ $jRight ] = $t;
+                swap($inArr[ $iLeft ], $inArr[ $jRight ]);
             }
 
         }
 
+        // 基准数归位
         $inArr[ $start ] = $inArr[ $iLeft ];
         $inArr[ $iLeft ] = $temp;
 
+        // 递归 左侧数组继续此操作
         quickSort($inArr, $start, $iLeft - 1, ++$run);
+        // 递归 右侧数组继续此操作
         quickSort($inArr, $iLeft + 1, $end, ++$run);
 
         return;
     }
 
-    $inArr = [ 5, 99, 2, 3 ];
-    quickSort($inArr);
-    print_r($inArr);
+    $inArr = getInArr();
+    $sortedSetArr = $inArr;
+
+    // 记录程序起始微妙时间
+    $start = microtime();
+    // 开始排序
+    quickSort($sortedSetArr);
+    // 记录程序结束微妙时间
+    $end = microtime();
+    // 程序运行的毫秒 (微妙 * 1000)
+    $cost = ( $end - $start ) * 1000;
+
+    // 去除第一个占位的item
+    array_shift($sortedSetArr);
+
+    $outArr = getSortConclusion('快速排序 最差时间复杂度:O(N^2) 平均时间复杂度:O(NlogN)', $inArr, $sortedSetArr, $cost);
+    echo $outArr['outputHumanStr'];
