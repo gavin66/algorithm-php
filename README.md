@@ -3,10 +3,10 @@
 
 ## 运行
 
-使用命令行
+使用命令行,选择算法
 
 ```shell
-php BubbleSort.php
+php src/index.php
 ```
 
 ## MIT License
