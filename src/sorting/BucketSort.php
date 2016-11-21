@@ -47,6 +47,3 @@ function bucketSort( array $inArr ) {
 
     return getSortConclusion('桶排序 时间复杂度: O(M+N)', $inArr, $sortedSetArr, $cost);
 }
-
-$outArr = bucketSort(getInArr());
-echo $outArr['outputHumanStr'];

@@ -33,12 +33,36 @@
     switch ( $selectableMenuStr ) {
         case 1:
             require_once ROOT_PATH . '/sorting/BucketSort.php';
+            $outArr = bucketSort(getInArr());
+            echo $outArr['outputHumanStr'];
+
             break;
         case 2:
             require_once ROOT_PATH . '/sorting/BubbleSort.php';
+            $outArr = bubbleSort(getInArr());
+            echo $outArr['outputHumanStr'];
+
             break;
         case 3:
             require_once ROOT_PATH . '/sorting/QuickSort.php';
+            $inArr = getInArr();
+            $sortedSetArr = $inArr;
+
+            // 记录程序起始微妙时间
+            $start = microtime();
+            // 开始排序
+            quickSort($sortedSetArr);
+            // 记录程序结束微妙时间
+            $end = microtime();
+            // 程序运行的毫秒 (微妙 * 1000)
+            $cost = ( $end - $start ) * 1000;
+
+            // 去除第一个占位的item
+            array_shift($sortedSetArr);
+
+            $outArr = getSortConclusion('快速排序 最差时间复杂度:O(N^2) 平均时间复杂度:O(NlogN)', $inArr, $sortedSetArr, $cost);
+            echo $outArr['outputHumanStr'];
+
             break;
         case 4:
             require_once ROOT_PATH . '/data-structures/Queue.php';

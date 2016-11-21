@@ -41,8 +41,3 @@ function bubbleSort( array $inArr ) {
 
     return getSortConclusion('冒泡排序 时间复杂度: O(N^2)', $inArr, $sortedSetArr, $cost);
 }
-
-$outArr = bubbleSort(getInArr());
-echo $outArr['outputHumanStr'];
-
-
